@@ -1,7 +1,12 @@
 ﻿namespace Marten.Schema.Identity
 {
-    public interface IIdGenerator<T>
+    public interface IIdGenerator<TId>
     {
-        T Assign(T existing, out bool assigned);
+        TId Assign(TId existing, out bool assigned);
+    }
+
+    public interface IIdGeneratorEx<in TDoc, TId> : IIdGenerator<TId>
+    {
+        TId Assign(TDoc document, out bool assigned);
     }
 }

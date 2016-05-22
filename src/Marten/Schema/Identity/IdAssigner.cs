@@ -19,9 +19,21 @@ namespace Marten.Schema.Identity
 
         public object Assign(TDoc document, out bool assigned)
         {
-            var original = _getter(document);
+            TId id;
 
-            var id = _generator.Assign(original, out assigned);
+            // see if the generator requires the full document
+            var generatorEx = _generator as IIdGeneratorEx<TDoc, TId>;
+
+            if (generatorEx != null)
+            {
+                id = generatorEx.Assign(document, out assigned);
+            }
+            else
+            {
+                var original = _getter(document);
+
+                id = _generator.Assign(original, out assigned);
+            }
 
             if (assigned)
             {

@@ -161,6 +161,8 @@
     <Compile Include="Schema\QualifiedDatabaseName.cs" />
     <Compile Include="Schema\ColumnValue.cs" />
     <Compile Include="Schema\Identity\CombGuidIdGeneration.cs" />
+    <Compile Include="Schema\Identity\CompositeIdentityGeneration.cs" />
+    <Compile Include="Schema\Identity\CompositeIdentityGenerator.cs" />
     <Compile Include="Schema\DocumentAliasAttribute.cs" />
     <Compile Include="Schema\ForeignKeyAttribute.cs" />
     <Compile Include="Schema\ForeignKeyDefinition.cs" />
