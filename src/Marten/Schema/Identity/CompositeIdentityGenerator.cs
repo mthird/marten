@@ -19,7 +19,7 @@ namespace Marten.Schema.Identity
             throw new NotImplementedException("IIdGenerator<TId>.Assign should not be called");
         }
 
-        public string Assign(TDoc document, out bool assigned)
+        public string Assign(TDoc document, string existing, out bool assigned)
         {
             if (KeyGenerator == null)
             {
@@ -31,13 +31,11 @@ namespace Marten.Schema.Identity
             // get the next sequence number if the existing id ends with /
             if (String.IsNullOrEmpty(id) || id.EndsWith("/"))
             {
-                // use hilogenerator
-                assigned = true;
-
-                return id + Sequence.NextLong();
+                id += Sequence.NextLong();
             }
 
-            assigned = false;
+            assigned = id != existing;
+
             return id;
         }
     }

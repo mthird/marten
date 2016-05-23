@@ -23,15 +23,14 @@ namespace Marten.Schema.Identity
 
             // see if the generator requires the full document
             var generatorEx = _generator as IIdGeneratorEx<TDoc, TId>;
+            var original = _getter(document);
 
             if (generatorEx != null)
             {
-                id = generatorEx.Assign(document, out assigned);
+                id = generatorEx.Assign(document, original, out assigned);
             }
             else
             {
-                var original = _getter(document);
-
                 id = _generator.Assign(original, out assigned);
             }
 

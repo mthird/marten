@@ -7,6 +7,6 @@
 
     public interface IIdGeneratorEx<in TDoc, TId> : IIdGenerator<TId>
     {
-        TId Assign(TDoc document, out bool assigned);
+        TId Assign(TDoc document, TId existing, out bool assigned);
     }
 }
